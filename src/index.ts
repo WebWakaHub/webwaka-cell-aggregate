@@ -1,9 +1,27 @@
 /**
- * Aggregator — Public API
- * Cell: CEL-AGGREGATE-v0.1.0
- * Category: Data & Persistence
+ * Aggregate — Cell Layer
+ * Composes organelles per BIOLOGICAL_GOVERNANCE_CONSTITUTION §4.1
+ * Layer: cell → depends on → organelle
  */
 
-export { Aggregator, AggregatorValidationError } from './aggregate-cell';
-export { AggregatorOrchestrator } from './aggregate-orchestrator';
-export * from './types';
+import { RecordStoreOrchestrator } from "@webwaka/organelle-record-store";
+import { EventDispatcherOrchestrator } from "@webwaka/organelle-event-dispatcher";
+
+export { RecordStoreOrchestrator } from '@webwaka/organelle-record-store';
+export { EventDispatcherOrchestrator } from '@webwaka/organelle-event-dispatcher';
+
+/**
+ * Aggregate Composition
+ * Assembles organelle-layer components into a cohesive cell-layer capability.
+ */
+export class AggregateComposition {
+  private recordStoreOrchestrator: RecordStoreOrchestrator;
+  private eventDispatcherOrchestrator: EventDispatcherOrchestrator;
+
+  constructor() {
+    this.recordStoreOrchestrator = new RecordStoreOrchestrator();
+    this.eventDispatcherOrchestrator = new EventDispatcherOrchestrator();
+  }
+}
+
+export * from "./types";
